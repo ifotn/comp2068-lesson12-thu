@@ -17,7 +17,7 @@
     </ul>
 </nav>
 
-<main class="container">
+<main class="container" ng-app="GameApp" ng-controller="GameController" ng-init="getGames()">
 
     <h1>Game Manager</h1>
 
@@ -26,21 +26,21 @@
         <form>
             <fieldset class="form-group">
                 <label for="title" class="control-label col-sm-3">Title:</label>
-                <input name="title" id="city" ng-model="title" />
+                <input name="title" id="title" ng-model="game.title" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="publisher" class="control-label col-sm-3">Publisher:</label>
-                <input name="publisher" id="publisher" ng-model="publisher" />
+                <input name="publisher" id="publisher" ng-model="game.publisher" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="genre" class="control-label col-sm-3">Genre:</label>
-                <input name="genre" id="genre" ng-model="genre" />
+                <input name="genre" id="genre" ng-model="game.genre" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="year" class="control-label col-sm-3">Year:</label>
-                <input name="year" id="year" ng-model="year" type="number" />
+                <input name="year" id="year" ng-model="game.year" type="number" />
             </fieldset>
-            <button class="btn btn-success col-sm-offset-3">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="addGame()">Add</button>
         </form>
     </section>
 
@@ -55,11 +55,11 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr ng-repeat="g in games track by $index">
+                <td>{{ g.title }}</td>
+                <td>{{ g.publisher }}</td>
+                <td>{{ g.genre }}</td>
+                <td>{{ g.year }}</td>
                 <td><button class="btn btn-primary">Edit</button></td>
                 <td><button class="btn btn-danger">Delete</button></td>
             </tr>
@@ -70,6 +70,7 @@
 
 <!--js-->
 <script src="/javascripts/angular.min.js"></script>
+<script src="/javascripts/angular-ui-router.js"></script>
 <script src="/javascripts/jquery-3.1.1.min.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
 <script src="/javascripts/scripts.js"></script>
