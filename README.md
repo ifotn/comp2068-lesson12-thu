@@ -1,7 +1,7 @@
 # comp2068-lesson12-thu
 <h1>Full MEAN Stack SPA</h1>
 <p>This app was built in COMP2068's Thursday class.</p>
-<h3>Changes made to unbind the form from the Data List<h3>
+<h3>Changes made to unbind the form from the Data List</h3>
 <ul>
 <li>The form and table are bound to different ng-models: <em>currentGame</em> and <em>games</em> respectively.</li>
 <li>The Angular controller <em>selectGame</em> method, rather than binding to $scope.games, now calls a Factory method to look up 
