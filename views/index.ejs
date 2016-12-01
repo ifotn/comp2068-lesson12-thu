@@ -19,39 +19,39 @@
 
 <main class="container">
 
-    <h1>Team Manager</h1>
+    <h1>Game Manager</h1>
 
     <section class="form-group jumbotron">
-        <h2>Add a New Team</h2>
+        <h2>Add a New Game</h2>
         <form>
             <fieldset class="form-group">
-                <label for="city" class="control-label col-sm-3">City:</label>
-                <input name="city" id="city" ng-model="city" />
+                <label for="title" class="control-label col-sm-3">Title:</label>
+                <input name="title" id="city" ng-model="title" />
             </fieldset>
             <fieldset class="form-group">
-                <label for="nickname" class="control-label col-sm-3">Nickname:</label>
-                <input name="nickname" id="nickname" ng-model="nickname" />
+                <label for="publisher" class="control-label col-sm-3">Publisher:</label>
+                <input name="publisher" id="publisher" ng-model="publisher" />
             </fieldset>
             <fieldset class="form-group">
-                <label for="wins" class="control-label col-sm-3">Wins:</label>
-                <input name="wins" id="wins" ng-model="wins" type="number" />
+                <label for="genre" class="control-label col-sm-3">Genre:</label>
+                <input name="genre" id="genre" ng-model="genre" />
             </fieldset>
             <fieldset class="form-group">
-                <label for="losses" class="control-label col-sm-3">Losses:</label>
-                <input name="losses" id="losses" ng-model="losses" type="number" />
+                <label for="year" class="control-label col-sm-3">Year:</label>
+                <input name="year" id="year" ng-model="year" type="number" />
             </fieldset>
             <button class="btn btn-success col-sm-offset-3">Add</button>
         </form>
     </section>
 
     <section>
-        <h2>Team List</h2>
+        <h2>Game List</h2>
         <table class="table table-striped">
             <tr>
-                <th>City</th>
-                <th>Nickname</th>
-                <th>Wins</th>
-                <th>Losses</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Genre</th>
+                <th>Year</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
