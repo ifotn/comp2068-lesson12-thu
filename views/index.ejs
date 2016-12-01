@@ -22,25 +22,28 @@
     <h1>Game Manager</h1>
 
     <section class="form-group jumbotron">
-        <h2>Add a New Game</h2>
+        <h2>Game Details</h2>
         <form>
             <fieldset class="form-group">
                 <label for="title" class="control-label col-sm-3">Title:</label>
-                <input name="title" id="title" ng-model="game.title" />
+                <input name="title" id="title" ng-model="currentGame.title" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="publisher" class="control-label col-sm-3">Publisher:</label>
-                <input name="publisher" id="publisher" ng-model="game.publisher" />
+                <input name="publisher" id="publisher" ng-model="currentGame.publisher" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="genre" class="control-label col-sm-3">Genre:</label>
-                <input name="genre" id="genre" ng-model="game.genre" />
+                <input name="genre" id="genre" ng-model="currentGame.genre" />
             </fieldset>
             <fieldset class="form-group">
                 <label for="year" class="control-label col-sm-3">Year:</label>
-                <input name="year" id="year" ng-model="game.year" type="number" />
+                <input name="year" id="year" ng-model="currentGame.year" type="number" />
             </fieldset>
-            <button class="btn btn-success col-sm-offset-3" ng-click="addGame()">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="addGame()" ng-hide="currentGame._id">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="updateGame()" ng-show="currentGame._id">Update</button>
+            <button class="btn btn-success" ng-click="clearGame()">Clear</button>
+            <input id="_id" name="_id" ng-model="currentGame._id" type="hidden" />
         </form>
     </section>
 
@@ -60,8 +63,8 @@
                 <td>{{ g.publisher }}</td>
                 <td>{{ g.genre }}</td>
                 <td>{{ g.year }}</td>
-                <td><button class="btn btn-primary">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><button class="btn btn-primary" ng-click="selectGame(g._id)">Edit</button></td>
+                <td><button class="btn btn-danger" ng-click="deleteGame(g._id, $index)">Delete</button></td>
             </tr>
         </table>
     </section>

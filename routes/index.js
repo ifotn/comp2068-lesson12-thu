@@ -35,6 +35,48 @@ router.post('/games', function(req, res, next) {
   });
 });
 
+// DELETE /games/_id
+router.delete('/games/:_id', function(req, res, next) {
+  var _id = req.params._id;
+
+  Game.remove({ _id: _id }, function(err, game) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(game);
+  });
+});
+
+// GET /games_id
+router.get('/games/:_id', function(req, res, next) {
+
+  var _id = req.params._id;
+
+  console.log('_id: ' + _id);
+  Game.findById({ _id: _id }, function(err, game) {
+    if (err) {
+      return next(err);
+    }
+
+
+    res.json(game);
+  });
+});
+
+// PUT /games/_id
+router.put('/games/:_id', function(req, res, next) {
+  var _id = req.params._id;
+
+  Game.update({ _id: _id }, req.body, function(err, game) {
+    if (err) {
+      return next(err);
+    }
+    
+    res.json(game);
+  });
+});
+
 // make public
 module.exports = router;
 

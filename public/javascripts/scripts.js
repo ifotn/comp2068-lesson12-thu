@@ -29,6 +29,28 @@ app.factory('GameFactory', ['$http', function($http) {
       });
     };
 
+    // DELETE
+    g.deleteGame = function(_id, index) {
+        return $http.delete('/games/' + _id).success(function(data) {
+           // remove from the local array
+            g.games.splice(index, 1);
+        });
+    };
+
+    // SELECT
+    g.selectGame = function(_id) {
+        return $http.get('/games/' + _id).success(function(data) {
+        });
+    };
+
+    // UPDATE
+    g.updateGame = function(game) {
+      return $http.put('/games/' + game._id, game).success(function(data)  {
+            // refresh local array
+            g.getGames();
+      });
+    };
+
     // return the games to controller
     return g;
 
@@ -49,15 +71,50 @@ app.controller('GameController', ['$scope', 'GameFactory', function($scope, Game
     // ADD
     $scope.addGame = function() {
         // 1. call the factory's add method and pass it the game object from the form
-        GameFactory.addGame($scope.game);
+        GameFactory.addGame($scope.currentGame);
 
         // 2. refresh the game list
         $scope.getGames();
 
         // 3. clear the input form
-        $scope.game = null;
+        $scope.clearGame();
     };
 
+    // DELETE
+    $scope.deleteGame = function(_id, index) {
+        if (confirm('This game is really fun...are you sure??')) {
+            // 1. call the Factory's delete method
+            GameFactory.deleteGame(_id, index);
+
+            // 2. refresh the game list
+            $scope.getGames();
+        }
+    };
+
+    // SELECT GAME
+    $scope.selectGame = function(_id) {
+         GameFactory.selectGame(_id).then(function(response) {
+            $scope.currentGame = response.data;
+        });
+    };
+
+    // CLEAR FORM
+    $scope.clearGame = function() {
+        $scope.currentGame = null;
+    };
+
+    // UPDATE
+    $scope.updateGame = function() {
+        console.log($scope.currentGame);
+        // 1. call the Factory's update method
+        GameFactory.updateGame($scope.currentGame);
+
+        // 2. refresh the list
+        $scope.getGames();
+
+        // 3. clear the form
+        $scope.clearGame();
+    }
 }]);
 // end controller
 
